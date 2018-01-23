@@ -1,6 +1,6 @@
 const RESOLUTION = 10
-const WIDTH = 400
-const HEIGHT = 400
+const WIDTH = 800
+const HEIGHT = 800
 
 const ROWS = HEIGHT / RESOLUTION
 const COLS = WIDTH / RESOLUTION
@@ -31,22 +31,22 @@ const generate2DGrid = (cols, rows) => {
 
 const draw = (grid) => {
   const context = document.getElementById('canvas').getContext('2d')
-  for (let i = 0; i < ROWS; i++) {
-    for (let j = 0; j < COLS; j++) {
+  for (let i = 0; i < COLS; i++) {
+    for (let j = 0; j < ROWS; j++) {
       if (grid[i][j]){
         context.fillStyle = 'white';
       } else {
         context.fillStyle = 'black';
       }
-      context.fillRect(j * RESOLUTION, i * RESOLUTION, RESOLUTION, RESOLUTION)
+      context.fillRect(i * RESOLUTION, j * RESOLUTION, RESOLUTION, RESOLUTION)
     }
   }
 }
 
 const generateNewState = (grid) => {
   const newGrid = generate2DGrid(COLS, ROWS)
-  for (let i = 0; i < ROWS; i++) {
-    for (let j = 0; j < COLS; j++) {
+  for (let i = 0; i < COLS; i++) {
+    for (let j = 0; j < ROWS; j++) {
       const neighboors = countNeighbors(grid, i, j)
       const currentCell = grid[i][j]
       if (currentCell === 0 && neighboors === 3) {
